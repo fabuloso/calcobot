@@ -1,0 +1,2 @@
+{:token "PUT_HERE_YOUR_TOKEN",
+ :url   "https://api.telegram.org/bot"}

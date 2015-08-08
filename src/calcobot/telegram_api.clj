@@ -1,4 +1,6 @@
 (ns calcobot.telegram-api
+(:require [clojure.walk :refer [keywordize-keys]]
+          [cheshire.core :refer [parse-string]])
   (:gen-class))
 
 (defn get-chat-id [update-response]

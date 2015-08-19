@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [clj-http "2.0.0"]
                  [org.clojure/data.json "0.2.6"]
-                 [cheshire "5.5.0"]]
+                 [cheshire "5.5.0"]
+                 [overtone/at-at "1.2.0"]]
   :plugins [[lein-ring "0.8.13"]]
   :main ^:skip-aot calcobot.core
   :target-path "target/%s"

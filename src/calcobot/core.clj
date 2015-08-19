@@ -1,10 +1,11 @@
 (ns calcobot.core
   (:require [clj-http.client :as client]
             [calcobot.config :as config]
-            [calcobot.telegram-api :as api]) 
+            [calcobot.telegram-api :as api]
+            [overtone.at-at :as at])
   (:gen-class))
 
-(defn url [] (str 
+(defn url [] (str
               (config/get-url )
               (config/get-token )))
 
@@ -25,6 +26,12 @@
    (get-chat-id-from-updates)
    (api/get-message (api/parse-update (get-updates)))))
 
-(defn -main []
-  (println (config/get-token)))
+(defn set-interval [callback ms]
+  (future (while true (do (Thread/sleep ms) (callback)))))
 
+(def my-pool (at/mk-pool))
+
+(defn -main []
+  (at/every 1000
+            #(read-and-send)
+            my-pool))

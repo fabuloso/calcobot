@@ -5,6 +5,8 @@
             [overtone.at-at :as at])
   (:gen-class))
 
+(def my-pool (at/mk-pool))
+
 (defn url [] (str
               (config/get-url )
               (config/get-token )))
@@ -26,10 +28,6 @@
    (get-chat-id-from-updates)
    (api/get-message (api/parse-update (get-updates)))))
 
-(defn set-interval [callback ms]
-  (future (while true (do (Thread/sleep ms) (callback)))))
-
-(def my-pool (at/mk-pool))
 
 (defn -main []
   (at/every 1000
